@@ -20,7 +20,7 @@ At the time I was good with Excel and I was learning VBA to automate some proces
 I brought in all the monster tables and rules into the excel file as different spreadsheets, essentially my 'database'.  
 ![The Excel file](https://github.com/dmstringer/my-quest-project/blob/master/readme_pics/helper2.jpg?s=200)  
 
-It was clunky, but it worked. My friends and I used my little pet project many times for many years.  
+It was clunky, but it worked. My friends and I used my little pet project many times for many years, Warhammer Quest spread out on the kitchen table, with a laptop running my little app sitting next to it.  
 
 Fast forward about ten years, and I now have the skills to take my little pet project and turn it into a proper full-stack web application.  
 

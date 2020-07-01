@@ -1,5 +1,5 @@
 const knexLib = require('knex')
-const dbCfg = require('../knexfile')
+const dbCfg = require('../knexfile.js')
 
 // this will hold our database connection
 let conn = null
@@ -8,9 +8,9 @@ let conn = null
 function connect () {
   return new Promise(function (resolve, reject) {
     conn =  knexLib(dbCfg.development)
-    conn.raw('SELECT 1 + 1')
+    conn.raw('SELECT 2 + 2 as test')
       .then((result) => {
-        console.log(result)
+        console.log(result.rows)
         console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
       })
       .catch((err) => {
@@ -19,16 +19,22 @@ function connect () {
   })
 }
 
+const getMonstersQuery = `SELECT * FROM monster_table WHERE monstertable_level = 1`
+
+function getMonsters () {
+  return conn.raw(getMonstersQuery)
+    .then((result) => {
+      return result
+    })
+}
+
+
 //--------------------------------------------------------------------
 // Public API
 
 module.exports = {
-  connect: connect
-  //-------
+  connect: connect,
+  getMonsters: getMonsters
+
 }
 
-
-
-// REMEMBER ---- in app.js or index.js you will need to have something like (at the top)....
-// 
-// const questData = require('./src/database_logic')
