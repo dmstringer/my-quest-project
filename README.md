@@ -6,6 +6,8 @@ Many, many years ago my friends and I played this tabletop miniature game called
 ![Warhammer Quest](https://github.com/dmstringer/my-quest-project/blob/master/readme_pics/questbox2.jpg?s=200)  
 
 It was basicly a simulation of a dungeon crawl, but without a dungeon master controlling the monsters. 
+![Warhammer Quest](https://github.com/dmstringer/my-quest-project/blob/master/readme_pics/minis.jpg?s=200)  
+
 The game contained many different mechanics to generate and control the monsters, so all you needed were some players to sit down with you and play. 
 The one mechanic that I found to be the most tedious was the random monster tables layed out in the rule book for all the higher level monsters.  
 Each new encounter became this tedious process of rolling on a table for the monsters...  
