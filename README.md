@@ -3,7 +3,7 @@
 ## Project Explanation
 I'm a huge tabletop gaming nerd.  
 Many, many years ago my friends and I played this tabletop miniature game called Warhammer Quest.  
-[![Warhammer Quest](https://github.com/dmstringer/quest-project/blob/master/readme_pics/questbox2.jpg?s=200)]  
+![Warhammer Quest](https://github.com/dmstringer/my-quest-project/blob/master/readme_pics/questbox2.jpg?s=200)  
 
 It was basicly a simulation of a dungeon crawl, but without a dungeon master controlling the monsters. 
 The game contained many different mechanics to generate and control the monsters, so all you needed were some players to sit down with you and play. 
@@ -11,12 +11,12 @@ The one mechanic that I found to be the most tedious was the random monster tabl
 Each new encounter became this tedious process of rolling on a table for the monsters...  
 Then looking elsewhere in the book for all the special rules that monster had...  
 Then rolling on another chart to see what treasures those monsters were carrying...  
-[![Monster Table](https://github.com/dmstringer/quest-project/blob/master/readme_pics/monsterchart2.jpg?s=200)]  
+![Monster Table](https://github.com/dmstringer/my-quest-project/blob/master/readme_pics/monsterchart2.jpg?s=200)  
 
 I fealt there had to be a way to speed this process up.  
 At the time I was good with Excel and I was learning VBA to automate some processes for my job, so I decided to build a monster generator in an Excel file. 
 I brought in all the monster tables and rules into the excel file as different spreadsheets, essentially my 'database'.  
-[![The Excel file](https://github.com/dmstringer/quest-project/blob/master/readme_pics/helper2.jpg?s=200)]  
+![The Excel file](https://github.com/dmstringer/my-quest-project/blob/master/readme_pics/helper2.jpg?s=200)  
 
 It was clunky, but it worked. My friends and I used my little pet project many times for many years.  
 
