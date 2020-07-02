@@ -1,0 +1,40 @@
+const knexLib = require('knex')
+const dbCfg = require('./knexfile.js')
+
+// this will hold our database connection
+let conn = null
+
+//REMEMBER------this should return a promise
+function connect () {
+  return new Promise(function (resolve, reject) {
+    conn =  knexLib(dbCfg.development)
+    conn.raw('SELECT 2 + 2 as test')
+      .then((result) => {
+        //console.log(result.rows)
+        //console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        resolve()
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
+}
+
+function getMonsters (mnstLevel, d66) {
+
+  return conn.from('monster_table').select('*').where('monstertable_level', mnstLevel).where('monstertable_d66', d66)
+
+    .then((result) => {
+      return result[0]
+    })
+}
+
+//--------------------------------------------------------------------
+// Public API
+
+module.exports = {
+  connect: connect,
+  getMonsters: getMonsters
+
+}
+ 
