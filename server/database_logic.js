@@ -29,12 +29,31 @@ function getMonsters (mnstLevel, d66) {
     })
 }
 
+function getMonsterStats (mnstName) {
+
+  return conn.from('monster_stats').select('*').where('monster_name', mnstName)
+
+    .then((result) => {
+      return result[0]
+    })
+}
+
+function getSpecialRule (ruleName) {
+
+  return conn.from('special_rules').select('*').where('rule_name', ruleName)
+
+    .then((result) => {
+      return result[0]
+    })
+}
+
 //--------------------------------------------------------------------
 // Public API
 
 module.exports = {
   connect: connect,
-  getMonsters: getMonsters
-
+  getMonsters: getMonsters,
+  getMonsterStats: getMonsterStats,
+  getSpecialRule: getSpecialRule
 }
  
