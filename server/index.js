@@ -1,31 +1,25 @@
 const express = require('express');
+const cors = require('cors');
 const questDB = require('./database_logic');
 const clone = require('rfdc')()
 //const randomOrg = require('./random');
 
-const app = express() 
+const app = express();
 
-// serve files out of the public directory
-app.use(express.static('public'))
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.urlencoded({ extended: true }))
+const port = 7878;
 
-const port = 7878
-
-// set the template engine
-//app.set('view engine', 'hbs')
-
-// the homepage
-// app.get('/', function (req, res) {
-//   db.getLists()
-//     .then((lists) => {
-//       res.render('index', { lists: lists })
-//     })
-//     .catch(() => {
-//       // TODO: show an error page here
-//     })
-// })
-
+app.get('/api/getmonster/:level', async function (req, res) {
+  var level = req.params.level;
+  let frmMnstObj = await formMonstersObject(level);
+  console.log(frmMnstObj);
+  console.log(level);
+  res.json(frmMnstObj);
+  
+});
 
 function randomInteger (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -82,7 +76,6 @@ async function fillInNewMonsterObject (numMonsters, getMonsterStatsResult) {
 };
 
 async function formMonstersObject (level) {
-
   const monsterTableRollResult = await getMonsterTableRoll(level);
   let newMonstersObject = monstersObject;
   let numMonsters = 0;
@@ -142,13 +135,14 @@ async function formMonstersObject (level) {
       };
     };
   };
-  console.log(newMonstersObject);
+  return newMonstersObject;
+  //console.log(newMonstersObject);
 };
 
 
 //this function generates a d66 then calls the .getMonsters method to get the monster table result
-async function getMonsterTableRoll (level) {      //the monster table level will get passed in
-  let mnstLevel = level;
+async function getMonsterTableRoll (levelChoice) {      //the monster table level will get passed in
+  let mnstLevel = levelChoice;
 
   let tensDig = randomInteger(1, 6);              // get the random tens and ones digits
   let onesDig = randomInteger(1, 6);
@@ -175,5 +169,4 @@ async function getMonsterTableRoll (level) {      //the monster table level will
 // global kickoff point
 questDB.connect()
   .then(startExpressApp)
-  .then(formMonstersObject(8))
   .catch(bootupSequenceFailed)
