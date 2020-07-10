@@ -47,6 +47,24 @@ function getSpecialRule (ruleName) {
     })
 }
 
+function getSpecialTableItem (ruleType, tableNum) {
+
+  return conn.from('special_table').select('*').where('specialtable_type', ruleType).where('specialtable_num', tableNum)
+
+    .then((result) => {
+      return result[0]
+    })
+}
+
+function getTreasureItem (treasureType, tableNum) {
+
+  return conn.from('treasure_table').select('*').where('treasuretable_type', treasureType).where('treasuretable_num', tableNum)
+
+    .then((result) => {
+      return result[0]
+    })
+}
+
 //--------------------------------------------------------------------
 // Public API
 
@@ -54,6 +72,8 @@ module.exports = {
   connect: connect,
   getMonsters: getMonsters,
   getMonsterStats: getMonsterStats,
-  getSpecialRule: getSpecialRule
+  getSpecialRule: getSpecialRule,
+  getSpecialTableItem: getSpecialTableItem,
+  getTreasureItem: getTreasureItem
 }
  
