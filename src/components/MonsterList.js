@@ -19,7 +19,7 @@ function MakeAMonsterBox (props) {
     const specialsListArr = [...Array(props.monsterList[props.arrayIndex].special_rules.length).keys()]
     return (
         <Fragment>
-            <div className="card mt-2" style={{width: "1130px"}}>
+            <div className="card mb-2" style={{width: "1130px"}}>
                 <div className="card-body d-flex flex-row p-3">
                     <div className="p-0 d-flex flex-column" style={{width: "50px"}}>
                         <div className="p-0 border-top border-bottom">#</div>
@@ -82,7 +82,7 @@ function MakeAMonsterBox (props) {
                     {specialsListArr.map((idx) => <MakeTheSpecialsList key={idx} arrayIndex={idx} thisMonster={props.monsterList[props.arrayIndex]} />)}
                 </ul>
                 <div className="card-body p-1 ml-3 text-center">
-                    <a href="#" className="card-link btn btn-primary btn-sm"
+                    <a href="# " className="card-link btn btn-primary btn-sm"
                         onClick={function() { props.updateMonsterList( removeArrayItem(props.monsterList, props.arrayIndex) ) }}
                     >Remove Monster</a>
                 </div>

@@ -10,7 +10,7 @@ function MakeATreasureBox (props) {
     return (
         <Fragment>
             <div className="row justify-content-center">
-                <div className="card mt-2" style={{width: "600px"}}>
+                <div className="card mb-2" style={{width: "600px"}}>
                     <div className="card-body d-flex flex-row p-3">
                         <div className="p-0 d-flex flex-column" style={{width: "250px"}}>
                             <div className="p-0 border-top border-bottom">Name</div>
@@ -29,7 +29,7 @@ function MakeATreasureBox (props) {
                         {props.treasureList[props.arrayIndex].treasure_description}
                     </div>
                     <div className="card-body p-1 ml-3 text-center">
-                        <a href="#" className="card-link btn btn-primary btn-sm"
+                        <a href="# " className="card-link btn btn-primary btn-sm"
                             onClick={function() { props.updateTreasureList( removeArrayItem(props.treasureList, props.arrayIndex) ) }}
                         >Remove Treasure</a>
                     </div>

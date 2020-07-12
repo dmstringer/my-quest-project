@@ -25,6 +25,20 @@ app.get('/api/gettreasure/:roomtype', async function (req, res) {
   res.json(frmTrsurObj);
 });
 
+app.get('/api/getevent/:eventtype', async function (req, res) {
+  var eventType = req.params.eventtype;
+  let eventRoll = randomInteger(1, 100);
+  let eventQuery = await questDB.getEventItem(eventType, eventRoll);
+  res.json(eventQuery);
+});
+
+app.get('/api/getsubs/:eventtype.:eventSubsHazID', async function (req, res) {
+  var eventSubsType = req.params.eventtype;
+  var eventSubsHazID = req.params.eventSubsHazID;
+  const eventAndHazSubsResult = await questDB.getSubsItems(eventSubsType, eventSubsHazID);
+  res.json(eventAndHazSubsResult);
+});
+
 //-------------------------------------------------------------------------------------------
 //defining my objects that will be filled with data and passed to the front end
 
@@ -371,6 +385,18 @@ const bootupSequenceFailed = (err) => {
   console.error('Goodbye!')
   process.exit(1)
 }
+
+// const testingEventQuerys = async function () {
+//   let eventTest = "settlement event";
+//   let eventTestRoll = 6;
+//   let eventSubsHazID = 206;
+//   const eventAndHazResult = await questDB.getEventItem(eventTest, eventTestRoll);
+//   console.log("----------------------------------------------------------------");
+//   console.log(eventAndHazResult);
+//   console.log("----------------------------------------------------------------");
+//   const eventAndHazSubsResult = await questDB.getSubsItems(eventTest, eventSubsHazID);
+//   console.log(eventAndHazSubsResult);
+// }
 
 questDB.connect()
   .then(startExpressApp)

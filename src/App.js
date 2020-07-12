@@ -1,103 +1,82 @@
 import React, { useState, Fragment } from 'react';
 import './App.css';
-import MonsterList from './components/MonsterList';
-import TreasureList from './components/TreasureList';
+import MonstersAndTreasure from './components/MonstersAndTreasure';
+import EventsAndHazards from './components/EventsAndHazards';
+import HelloQuest from './components/HelloQuest';
 //import cloneDeep from 'lodash/cloneDeep';
 
 const monsterArray = [{ d66: "", level: "", number: "", monster_name: "", wounds: "", move: "", weapon_skill: "", ballistic_skill: "", strength: "", toughness: "", initiative: "", attacks: "", gold: "", armour: "", damage: "", special_rules: [] }];
 
 const treasureArray = [{ treasure_type: "", treasure_name: "", treasure_cost: "", treasure_description: "" }];
 
-function newMonsterArray (oldArray, data) {
-  let newArray = oldArray.concat(data);
-  if (newArray[0].d66 === "") {
-    newArray.shift();
-  }
-  return newArray;
+const eventArray = [{ event_n_haz_id: "", event_n_haz_type: "", event_n_haz_name: "", event_n_haz_roll: "", event_n_haz_has_sub: "", event_n_haz_description: "" }];
+
+const tabsArray = [
+  { label: "Hello Quest", value: "TAB_HELLO", key: "1" },
+  { label: "Monsters and Treasure", value: "TAB_MONSTERS", key: "2" },
+  { label: "Events and Hazards", value: "TAB_EVENTS", key: "3" },
+];
+
+function TabCreator (props) {
+  return (
+    <ul className='nav nav-tabs nav-justified'>
+      {props.tabsArray.map(({ label, value, key }) => (
+        <li
+          className='nav-item' key={key}
+          onClick={() => { props.updateTab(value); }}
+        >
+          <a href="# " className={`${value === props.activeTab ? 'font-weight-bold nav-link active' : 'nav-link'}`} style={{fontSize: "x-large"}}>{label}</a>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
-function newTreasureArray (oldArray, data) {
-  let newArray = oldArray.concat(data);
-  if (newArray[0].treasure_type === "") {
-    newArray.shift();
+function ContentPicker (props) {
+  if (props.activeTab === "TAB_HELLO") {
+    return (<HelloQuest />);
+  } else if (props.activeTab === "TAB_MONSTERS") {
+    return (<MonstersAndTreasure
+              monsterList={props.monsterList}
+              updateMonsterList={props.updateMonsterList}
+              treasureList={props.treasureList}
+              updateTreasureList={props.updateTreasureList}
+            />);
+  } else if (props.activeTab === "TAB_EVENTS") {
+    return (<EventsAndHazards 
+              eventList={props.eventList}
+              updateEventList={props.updateEventList}    
+            />);
+  } else {
+    return (<div> Content of Tab {props.activeTab}</div>);
   }
-  return newArray;
 }
 
 function App() {
+  const [activeTab, updateTab] = useState("TAB_HELLO");                 //tracking the tabs state
   const [monsterList, updateMonsterList] = useState(monsterArray);
   const [treasureList, updateTreasureList] = useState(treasureArray);
+  const [eventList, updateEventList] = useState(eventArray);
   return (
     <Fragment>
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='container col justify-content-center border-right'>
-            <div className='container text-center mt-3 d-flex justify-content-center'>
-              <select className="custom-select" style={{width: "300px"}} defaultValue={'DEFAULT'} id='monsterLevel'>
-                <option value="DEFAULT">Choose a Level for Monsters...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
-                <option value="6">Six</option>
-                <option value="7">Seven</option>
-                <option value="8">Eight</option>
-                <option value="9">Nine</option>
-                <option value="10">Ten</option>
-              </select>
-              <a className="btn btn-primary px-2 mx-2" href="#" role="button"
-                onClick={function clickGetMonsterButton(){
-                    if (document.getElementById('monsterLevel').value === 'DEFAULT') {
-                      alert("Please choose a Monster Level!");
-                    } else {
-                      let monsterLevel = document.getElementById('monsterLevel').value;
-                      fetch(`http://localhost:7878/api/getmonster/${monsterLevel}`)
-                      .then(function(response) {return response.json()})
-                      .then(function(data) { 
-                        updateMonsterList( newMonsterArray(monsterList, data))})
-                    }
-                }}>Generate a Monster</a>
-              <a className="btn btn-danger px-2" href="#" role="button"
-                onClick={function clickClearMonsterButton(){ updateMonsterList( monsterArray );
-                }}>Clear all Monsters</a>
-            </div>
-            <div className='container justify-content-center'>
-              <h1 className='text-center mt-5 ml-3'>Monster List</h1>
-              <MonsterList monsterList={monsterList} updateMonsterList={updateMonsterList} />
-            </div>
+      <section className="section">
+        <div className="container-fluid">
+          <div className="">
+            <TabCreator tabsArray={tabsArray} activeTab={activeTab} updateTab={updateTab} />
           </div>
-          <div className='container col-5 justify-content-center'>
-            <div className='container text-center mt-3 d-flex justify-content-center'>
-              <select className="custom-select" style={{width: "300px"}} defaultValue={'DEFAULT'} id='treasureType'>
-                <option value="DEFAULT">Choose a Type of Treasure...</option>
-                <option value="DRT">Dungeon Room Treasure</option>
-                <option value="ORT">Objective Room Treasure</option>
-              </select>
-              <a className="btn btn-primary px-2 mx-2" href="#" role="button"
-                onClick={function clickGetTreasureButton(){
-                    if (document.getElementById('treasureType').value === 'DEFAULT') {
-                      alert("Please choose a Treasure Type!");
-                    } else {
-                      let roomtype = document.getElementById('treasureType').value;
-                      fetch(`http://localhost:7878/api/gettreasure/${roomtype}`)
-                      .then(function(response) {return response.json()})
-                      .then(function(data) { 
-                        updateTreasureList( newTreasureArray(treasureList, data))})
-                    }
-                }}
-              >Generate a Treasure</a>
-              <a className="btn btn-danger px-2" href="#" role="button"
-                onClick={function clickClearTreasuresButton(){ updateTreasureList( treasureArray );
-                }}>Clear all Treasures</a>
-            </div>
-            <div className='container justify-content-center'>
-              <h1 className='text-center mt-5'>Treasure List</h1>
-              <TreasureList treasureList={treasureList} updateTreasureList={updateTreasureList} />
-            </div>
-          </div>
+          <section className="container-fluid">
+            <ContentPicker                                      //passing all the states and the updaters to ContentPicker
+              activeTab={activeTab}                             //pass the active tab
+              monsterList={monsterList}
+              updateMonsterList={updateMonsterList}
+              treasureList={treasureList}
+              updateTreasureList={updateTreasureList}
+              eventList={eventList}
+              updateEventList={updateEventList}
+            />
+          </section>
         </div>
-      </div>
+      </section>
     </Fragment>
   );
 }
