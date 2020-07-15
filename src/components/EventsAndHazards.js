@@ -96,11 +96,23 @@ function EventsAndHazards(props) {
         <div className='row'>
           <div className='container col justify-content-center border-right'>
             <div className='container text-center mt-3 d-flex justify-content-center'>
-              <select className="custom-select" style={{width: "300px"}} defaultValue={'DEFAULT'} id='eventType'>
+              {/* <select className="custom-select" style={{width: "300px"}} defaultValue={'DEFAULT'} id='eventType'>
                 <option value="DEFAULT">Choose a Type of Event/Hazard...</option>
                 <option value="dungeon event">Dungeon Event</option>
                 <option value="settlement event">Settlement Event</option>
                 <option value="travel hazard">Travel Hazard</option>
+              </select> */}
+              <select className="custom-select" 
+                      style={{width: "300px"}} 
+                      value={props.eventDropdownValue} 
+                      id='eventType'
+                      onChange={e => props.updateEventDropdownValue(e.currentTarget.value)}
+              >
+                {props.eventDropdownItems.map(({ label, value }) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
               </select>
               <a className="btn btn-primary px-2 mx-2" href="# " role="button"
                 onClick={function clickGetEventButton() {
@@ -119,7 +131,6 @@ function EventsAndHazards(props) {
                             .then(function(data) {
                                 let subsReturned = data;
                                 moddedReturnedEvent = addTheSubsToEvent(returnedEvent, subsReturned);
-                                console.log(moddedReturnedEvent);
                                 props.updateEventList( newEventArray(props.eventList, moddedReturnedEvent));
                             })
                         } else {

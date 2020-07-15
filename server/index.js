@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const questDB = require('./database_logic');
 const clone = require('rfdc')()
+const Random = require("random-js").Random;
 
 const app = express();
 
@@ -39,6 +40,64 @@ app.get('/api/getsubs/:eventtype.:eventSubsHazID', async function (req, res) {
   res.json(eventAndHazSubsResult);
 });
 
+app.get('/api/getobjectiveroom/:monsterLevel', async function (req, res) {
+  var objMonsterLevel = req.params.monsterLevel;
+  let objRoomRoll = randomInteger(1, 6);
+  let frmMnstObj = [];
+  let frmMnstObj1 = [];
+  let frmMnstObj2 = [];
+  let frmMnstObj3 = [];
+  switch (objRoomRoll) {
+    case 1:                             //once 2 levels higher, once 1 level higher, once the same
+      if (objMonsterLevel > 8) {
+        frmMnstObj1 = await formMonstersObject(10);
+      } else {
+        frmMnstObj1 = await formMonstersObject((parseInt(objMonsterLevel) + 2));
+      }
+      if (objMonsterLevel > 9) {
+        frmMnstObj2 = await formMonstersObject(10);
+      } else {
+        frmMnstObj2 = await formMonstersObject((parseInt(objMonsterLevel) + 1));
+      }
+      frmMnstObj3 = await formMonstersObject(objMonsterLevel);
+    frmMnstObj = frmMnstObj1.concat(frmMnstObj2, frmMnstObj3)
+    break;
+    case 2:                             //twice 1 level higher
+      if (objMonsterLevel > 9) {
+        frmMnstObj1 = await formMonstersObject(10);
+        frmMnstObj2 = await formMonstersObject(10);
+      } else {
+        frmMnstObj1 = await formMonstersObject((parseInt(objMonsterLevel) + 1));
+        frmMnstObj2 = await formMonstersObject((parseInt(objMonsterLevel) + 1));
+      }
+      frmMnstObj = frmMnstObj1.concat(frmMnstObj2)
+    break;
+    case 3:                             //once 1 level higher, twice the same
+      if (objMonsterLevel > 9) {
+        frmMnstObj1 = await formMonstersObject(10);
+      } else {
+        frmMnstObj1 = await formMonstersObject((parseInt(objMonsterLevel) + 1));
+      }
+      frmMnstObj2 = await formMonstersObject(objMonsterLevel);
+      frmMnstObj3 = await formMonstersObject(objMonsterLevel);
+      frmMnstObj = frmMnstObj1.concat(frmMnstObj2, frmMnstObj3)
+    break;
+    case 4:
+    case 5:                             //three times on the same
+      frmMnstObj1 = await formMonstersObject(objMonsterLevel);
+      frmMnstObj2 = await formMonstersObject(objMonsterLevel);
+      frmMnstObj3 = await formMonstersObject(objMonsterLevel);
+      frmMnstObj = frmMnstObj1.concat(frmMnstObj2, frmMnstObj3)
+    break;
+    default:                            //twice on the same
+      frmMnstObj1 = await formMonstersObject(objMonsterLevel);
+      frmMnstObj2 = await formMonstersObject(objMonsterLevel);
+      frmMnstObj = frmMnstObj1.concat(frmMnstObj2)
+  }
+  
+  res.json(frmMnstObj);
+});
+
 //-------------------------------------------------------------------------------------------
 //defining my objects that will be filled with data and passed to the front end
 
@@ -53,9 +112,16 @@ const treasureObject = { treasure_type: "", treasure_name: "", treasure_cost: ""
 //-------------------------------------------------------------------------------------------
 //this function generates a random integer between a min and max, basiclly to emulate a dice roll, it is called from many places in the code
 
+
 function randomInteger (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  const random = new Random();
+  const value = random.integer(min, max);
+  return value;
 }
+
+// function randomInteger (min, max) {
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
 function getAD66 () {
   let tensDig = randomInteger(1, 6);              // get the random tens and ones digits

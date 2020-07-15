@@ -23,27 +23,26 @@ function newTreasureArray (oldArray, data) {
   return newArray;
 }
 
-function MonstersAndTreasure(props) {
+function MonstersAndTreasure (props) {
   return (
     <Fragment>
       <div className='container-fluid'>
         <div className='row'>
           <div className='container col justify-content-center border-right'>
             <div className='container text-center mt-3 d-flex justify-content-center'>
-              <select className="custom-select" style={{width: "300px"}} defaultValue={'DEFAULT'} id='monsterLevel'>
-                <option value="DEFAULT">Choose a Level for Monsters...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
-                <option value="6">Six</option>
-                <option value="7">Seven</option>
-                <option value="8">Eight</option>
-                <option value="9">Nine</option>
-                <option value="10">Ten</option>
+              <select className="custom-select" 
+                      style={{width: "300px"}} 
+                      value={props.monDropdownValue} 
+                      id='monsterLevel'
+                      onChange={e => props.updateMonDropdownValue(e.currentTarget.value)}
+              >
+                {props.monDropdownItems.map(({ label, value }) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
               </select>
-              <a className="btn btn-primary px-2 mx-2" href="# " role="button"
+              <a className="btn btn-primary mx-2" href="# " role="button"
                 onClick={function clickGetMonsterButton(){
                     if (document.getElementById('monsterLevel').value === 'DEFAULT') {
                       alert("Please choose a Monster Level!");
@@ -54,8 +53,20 @@ function MonstersAndTreasure(props) {
                       .then(function(data) { 
                         props.updateMonsterList( newMonsterArray(props.monsterList, data))})
                     }
-                }}>Generate a Monster</a>
-              <a className="btn btn-danger px-2" href="# " role="button"
+                }}>Dungeon Room Monsters</a>
+              <a className="btn btn-warning" href="# " role="button"
+                onClick={function clickGetObjMonstersButton(){
+                    if (document.getElementById('monsterLevel').value === 'DEFAULT') {
+                      alert("Please choose a Monster Level!");
+                    } else {
+                      let monsterLevel = document.getElementById('monsterLevel').value;
+                      fetch(`http://localhost:7878/api/getobjectiveroom/${monsterLevel}`)
+                      .then(function(response) {return response.json()})
+                      .then(function(data) { 
+                        props.updateMonsterList( newMonsterArray(props.monsterList, data))})
+                    }
+                }}>Objective Room Monsters</a>
+              <a className="btn btn-danger mx-2" href="# " role="button"
                 onClick={function clickClearMonsterButton(){ props.updateMonsterList( monsterArray );
                 }}>Clear all Monsters</a>
             </div>
@@ -66,10 +77,17 @@ function MonstersAndTreasure(props) {
           </div>
           <div className='container col-5 justify-content-center'>
             <div className='container text-center mt-3 d-flex justify-content-center'>
-              <select className="custom-select" style={{width: "300px"}} defaultValue={'DEFAULT'} id='treasureType'>
-                <option value="DEFAULT">Choose a Type of Treasure...</option>
-                <option value="DRT">Dungeon Room Treasure</option>
-                <option value="ORT">Objective Room Treasure</option>
+              <select className="custom-select" 
+                      style={{width: "300px"}} 
+                      value={props.tresDropdownValue} 
+                      id='treasureType'
+                      onChange={e => props.updateTresDropdownValue(e.currentTarget.value)}
+              >
+                {props.tresDropdownItems.map(({ label, value }) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
               </select>
               <a className="btn btn-primary px-2 mx-2" href="# " role="button"
                 onClick={function clickGetTreasureButton(){
