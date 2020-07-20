@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import MonsterList from './MonsterList.js';
 import TreasureList from './TreasureList.js';
-//import cloneDeep from 'lodash/cloneDeep';
 
 const monsterArray = [{ d66: "", level: "", number: "", monster_name: "", wounds: "", move: "", weapon_skill: "", ballistic_skill: "", strength: "", toughness: "", initiative: "", attacks: "", gold: "", armour: "", damage: "", special_rules: [] }];
 

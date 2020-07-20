@@ -35,14 +35,6 @@ function HelloQuest() {
                 </div>
                 <img className="ml-3 myimage" src="questbox2.jpg" alt="Quest Box" style={ {width: '300px', height: '211px' }} />
             </div>
-            {/* <div className="row media mb-2">
-                <img className="ml-3" src="minis.jpg" alt="Quest Miniatures Image" style={ {width: '300px'}, {height: '212px' }} />
-                <div className="media-body">
-                    <p className='h5 mt-3 ml-3'>It was basicly a simulation of a Dungeons-and-Dragons style dungeon crawl, but without a dungeon master controlling the monsters.</p>
-                    <p className='h5 ml-3'>The game presented a set of rules for how the monsters behaved and attacked the players. </p>
-                    <p className='h5 ml-3'>With many different mechanics to generate and control the monsters, all you needed were some players to sit down with you and play.</p>
-                </div>
-            </div> */}
         </div>
       </div>
     </Fragment>

@@ -1,6 +1,4 @@
 import React, { Fragment } from "react";
-//const clone = require('rfdc')()
-//const _ = require('lodash');
 
 function MakeTheSpecialsList (props) {
     return (
@@ -19,7 +17,7 @@ function MakeAMonsterBox (props) {
     const specialsListArr = [...Array(props.monsterList[props.arrayIndex].special_rules.length).keys()]
     return (
         <Fragment>
-            <div className="card mb-2" style={{width: "1130px"}}>
+            <div className="card mb-2 border border-dark" style={{width: "1130px"}}>
                 <div className="card-body d-flex flex-row p-3">
                     <div className="p-0 d-flex flex-column" style={{width: "50px"}}>
                         <div className="p-0 border-top border-bottom">#</div>

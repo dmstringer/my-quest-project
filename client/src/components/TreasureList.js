@@ -10,8 +10,8 @@ function MakeATreasureBox (props) {
     return (
         <Fragment>
             <div className="row justify-content-center">
-                <div className="card mb-2" style={{width: "600px"}}>
-                    <div className="card-body d-flex flex-row p-3">
+                <div className="card mb-2 border border-dark" style={{width: "600px"}}>
+                    <div className="card-body d-flex flex-row px-3 py-2">
                         <div className="p-0 d-flex flex-column" style={{width: "250px"}}>
                             <div className="p-0 border-top border-bottom">Name</div>
                             <div className="p-0 font-weight-bold">{props.treasureList[props.arrayIndex].treasure_name}</div>

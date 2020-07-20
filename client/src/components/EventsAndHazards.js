@@ -46,7 +46,7 @@ function EventList (props) {
 function MakeAnEventBox (props) {
     return (
         <Fragment>
-            <div className="card mb-2" style={{width: "1130px"}}>
+            <div className="card mb-2 border border-dark" style={{width: "1130px"}}>
                 <div className="card-body d-flex flex-row justify-content-center p-3">
                     <div className="p-0 d-flex flex-column" style={{width: "200px"}}>
                         <div className="p-0 border-top border-bottom">Type</div>
@@ -96,12 +96,6 @@ function EventsAndHazards(props) {
         <div className='row'>
           <div className='container col justify-content-center border-right'>
             <div className='container text-center mt-3 d-flex justify-content-center'>
-              {/* <select className="custom-select" style={{width: "300px"}} defaultValue={'DEFAULT'} id='eventType'>
-                <option value="DEFAULT">Choose a Type of Event/Hazard...</option>
-                <option value="dungeon event">Dungeon Event</option>
-                <option value="settlement event">Settlement Event</option>
-                <option value="travel hazard">Travel Hazard</option>
-              </select> */}
               <select className="custom-select" 
                       style={{width: "300px"}} 
                       value={props.eventDropdownValue} 

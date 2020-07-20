@@ -138,7 +138,11 @@ async function fillInNewMonsterObject (numMonsters, getMonsterStatsResult, level
   newMonsterObject.d66 = d66ToPass;
   newMonsterObject.level = levelToPass;
   newMonsterObject.number = numMonsters;
-  newMonsterObject.monster_name = getMonsterStatsResult.monster_name;
+  if (numMonsters === 1) {
+    newMonsterObject.monster_name = getMonsterStatsResult.monster_name;
+  } else {
+    newMonsterObject.monster_name = getMonsterStatsResult.monster_name + "(s)";
+  }
   newMonsterObject.wounds = getMonsterStatsResult.wounds;
   newMonsterObject.move = getMonsterStatsResult.move;
   newMonsterObject.weapon_skill = getMonsterStatsResult.weapon_skill;
