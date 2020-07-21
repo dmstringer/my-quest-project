@@ -114,13 +114,15 @@ function EventsAndHazards(props) {
                       alert("Please choose an Event Type!");
                     } else {
                       let eventType = document.getElementById('eventType').value;
-                      fetch(`http://localhost:7878/api/getevent/${eventType}`)
+                      // fetch(`http://localhost:7878/api/getevent/${eventType}`)
+                      fetch(`/api/getevent/${eventType}`)
                       .then(function(response) {return response.json()})
                       .then(function(data) { 
                         let returnedEvent = data;
                         let moddedReturnedEvent = {};
                         if (returnedEvent.event_n_haz_has_sub) {
-                            fetch(`http://localhost:7878/api/getsubs/${eventType}.${returnedEvent.event_n_haz_id}`)
+                            // fetch(`http://localhost:7878/api/getsubs/${eventType}.${returnedEvent.event_n_haz_id}`)
+                            fetch(`/api/getsubs/${eventType}.${returnedEvent.event_n_haz_id}`)
                             .then(function(response) {return response.json()})
                             .then(function(data) {
                                 let subsReturned = data;

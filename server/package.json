@@ -2,7 +2,6 @@
   "name": "my-quest-project",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:7878",
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.5.0",
@@ -14,7 +13,9 @@
     "random-js": "2.1.0",
     "rfdc": "1.1.4"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js"
+  },
   "browserslist": {
     "production": [
       ">0.2%",

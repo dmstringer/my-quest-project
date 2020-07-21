@@ -47,7 +47,8 @@ function MonstersAndTreasure (props) {
                       alert("Please choose a Monster Level!");
                     } else {
                       let monsterLevel = document.getElementById('monsterLevel').value;
-                      fetch(`http://localhost:7878/api/getmonster/${monsterLevel}`)
+                      //fetch(`http://localhost:7878/api/getmonster/${monsterLevel}`)
+                      fetch(`/api/getmonster/${monsterLevel}`)
                       .then(function(response) {return response.json()})
                       .then(function(data) { 
                         props.updateMonsterList( newMonsterArray(props.monsterList, data))})
@@ -59,7 +60,8 @@ function MonstersAndTreasure (props) {
                       alert("Please choose a Monster Level!");
                     } else {
                       let monsterLevel = document.getElementById('monsterLevel').value;
-                      fetch(`http://localhost:7878/api/getobjectiveroom/${monsterLevel}`)
+                      // fetch(`http://localhost:7878/api/getobjectiveroom/${monsterLevel}`)
+                      fetch(`/api/getobjectiveroom/${monsterLevel}`)
                       .then(function(response) {return response.json()})
                       .then(function(data) { 
                         props.updateMonsterList( newMonsterArray(props.monsterList, data))})
@@ -94,7 +96,8 @@ function MonstersAndTreasure (props) {
                       alert("Please choose a Treasure Type!");
                     } else {
                       let roomtype = document.getElementById('treasureType').value;
-                      fetch(`http://localhost:7878/api/gettreasure/${roomtype}`)
+                      //fetch(`http://localhost:7878/api/gettreasure/${roomtype}`)
+                      fetch(`/api/gettreasure/${roomtype}`)
                       .then(function(response) {return response.json()})
                       .then(function(data) { 
                         props.updateTreasureList( newTreasureArray(props.treasureList, data))})
