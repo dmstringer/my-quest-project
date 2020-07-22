@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 const questDB = require('./database_logic');
 const clone = require('rfdc')()
 const Random = require("random-js").Random;
@@ -10,7 +12,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const port = 7878;
+//const port = 7878;
+//dotenv.config();
 
 //end points---------------------------------------------------------------------------------
 
@@ -445,8 +448,8 @@ async function formTreasureObject (roomType) {
 //-------------------------------------------------------------------------------------------
 
 const startExpressApp = () => {
-  app.listen(port, () => {
-    console.log('express is listening on port ' + port)
+  app.listen(process.env.PORT, () => {
+    console.log('express is listening on port ' + process.env.PORT)
   })
 }
 
