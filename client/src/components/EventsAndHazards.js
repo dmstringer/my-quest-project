@@ -26,7 +26,7 @@ function addTheSubsToEvent (returnedEvent, subsReturned) {
             concatdSubs = concatdSubs + "\n" + subsReturned[i].event_n_haz_subs_roll + " --- " + subsReturned[i].event_n_haz_subs_description;
         }
     };
-    eventToMod.event_n_haz_description = eventToMod.event_n_haz_description + "\n(With some Events/Hazards, it's best for the players NOT to see the chart before rolling. Click below to toggle visibility.)";
+    eventToMod.event_n_haz_description = eventToMod.event_n_haz_description + "\n(With some Events/Hazards, it's best for the players NOT to see the accompanying sub-table before rolling. --Click below to toggle visibility--)";
     eventToMod.event_n_haz_subs_visible = false;
     eventToMod.event_n_haz_subs_descriptions = concatdSubs;
     return eventToMod;

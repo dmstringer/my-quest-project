@@ -12,8 +12,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//const port = 7878;
-//dotenv.config();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 //end points---------------------------------------------------------------------------------
 
