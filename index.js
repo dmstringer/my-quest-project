@@ -448,9 +448,10 @@ async function formTreasureObject (roomType) {
 // global kickoff point
 //-------------------------------------------------------------------------------------------
 
+const PORT = process.env.PORT || 3000;
 const startExpressApp = () => {
-  app.listen(process.env.PORT, () => {
-    console.log('express is listening on port ' + process.env.PORT)
+  app.listen(PORT, () => {
+    console.log(`express is listening on port ${ PORT }`)
   })
 }
 
@@ -459,18 +460,6 @@ const bootupSequenceFailed = (err) => {
   console.error('Goodbye!')
   process.exit(1)
 }
-
-// const testingEventQuerys = async function () {
-//   let eventTest = "settlement event";
-//   let eventTestRoll = 6;
-//   let eventSubsHazID = 206;
-//   const eventAndHazResult = await questDB.getEventItem(eventTest, eventTestRoll);
-//   console.log("----------------------------------------------------------------");
-//   console.log(eventAndHazResult);
-//   console.log("----------------------------------------------------------------");
-//   const eventAndHazSubsResult = await questDB.getSubsItems(eventTest, eventSubsHazID);
-//   console.log(eventAndHazSubsResult);
-// }
 
 questDB.connect()
   .then(startExpressApp)
