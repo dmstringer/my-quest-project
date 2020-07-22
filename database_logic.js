@@ -1,5 +1,5 @@
 const knexLib = require('knex')
-const dbCfg = require('knexfile.js')
+const dbCfg = require('./knexfile.js')
 
 // this will hold our database connection
 let conn = null
