@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-//const dotenv = require('dotenv');
-//dotenv.config();
+const dotenv = require('dotenv');
+dotenv.config();
 const questDB = require('./database_logic.js');
 const clone = require('rfdc')()
 const Random = require("random-js").Random;

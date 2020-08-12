@@ -7,7 +7,7 @@ let conn = null
 //REMEMBER------this should return a promise
 function connect () {
   return new Promise(function (resolve, reject) {
-    conn =  knexLib(dbCfg.development)
+    conn =  knexLib(dbCfg.production)
     conn.raw('SELECT 2 + 2 as test')
       .then((result) => {
         //console.log(result.rows)
