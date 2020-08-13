@@ -29,19 +29,19 @@ Fast forward about ten years, and I now have the skills to take my little pet pr
 I will be taking the Excel-based application I built with Visual Basic (approx. 1000 lines of code) and turning it into a full-stack web app,
 utilizing the following technologies I've learned from class:
 
-- The core of the random table generations will be written in Node.js
+- The core back-end server will be in Node.js. This will be my random table generation logic talking to the database as well as my Express server for end-points. 
 
-- I'll be using React to render the HTML, as it will allow me to update the displayed results dynamically.
+- I'll be using React for my front-end, as it will allow me to update the displayed results dynamically.
 
-- I will be converting the data from approx. 15 excel spreadsheets into a single PostgreSQL database
-- Because of the nature of relational databases, I will be able to condense the data to about 5 or 6 tables
+- I will be converting the data from approx. 15 Excel spreadsheets into a single PostgreSQL database, with Knex as my database connection module,  I will be able to condense the original Excel data to approx. 7 tables.
 
-- In the Excel version I used the built-in random number generator from Visual Basic to simulate dice rolls
-- With this app I will be connecting to the random number generator API from RANDOM.ORG, for more purely random dice rolls
+- In the Excel version I used the built-in random number generator from Visual Basic to simulate dice rolls. With this app I will be using the random-js node module as a mathematically correct random number generator.
 
+## What I Learned
+I found this project to be both extremely challenging and rewarding. Working through every aspect of the full-stack process (getting the database created, the server talking to the database, the front-end talking to the server, etc.) was painful at times, but finally getting it working was fist-pump inducing. :) I found it especially rewarding to be able to take the IMMENSE amount of data from my initial excel project and get it moved into a proper SQL database. It may not be the prettiest thing, but I am incredibly happy with the end result.
 
 
 ## See the project in ACTION!
-<a href="https://flitter.xyz" target="_blank">`  link to come   `</a>
+<a href="https://my-quest-project.herokuapp.com" target="_blank">`  https://my-quest-project.herokuapp.com   `</a>
 
 > © Scott Stringer. DigitalCrafts Flex class of 2020.
