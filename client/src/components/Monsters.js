@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import MonsterList from './MonsterList.js';
-import TreasureList from './TreasureList.js';
+// import TreasureList from './TreasureList.js';
 
 const monsterArray = [{ d66: "", level: "", number: "", monster_name: "", wounds: "", move: "", weapon_skill: "", ballistic_skill: "", strength: "", toughness: "", initiative: "", attacks: "", gold: "", armour: "", damage: "", special_rules: [] }];
 
-const treasureArray = [{ treasure_type: "", treasure_name: "", treasure_cost: "", treasure_description: "" }];
+// const treasureArray = [{ treasure_type: "", treasure_name: "", treasure_cost: "", treasure_description: "" }];
 
 function newMonsterArray (oldArray, data) {
   let newArray = oldArray.concat(data);
@@ -14,20 +14,20 @@ function newMonsterArray (oldArray, data) {
   return newArray;
 }
 
-function newTreasureArray (oldArray, data) {
-  let newArray = oldArray.concat(data);
-  if (newArray[0].treasure_type === "") {
-    newArray.shift();
-  }
-  return newArray;
-}
+// function newTreasureArray (oldArray, data) {
+//   let newArray = oldArray.concat(data);
+//   if (newArray[0].treasure_type === "") {
+//     newArray.shift();
+//   }
+//   return newArray;
+// }
 
-function MonstersAndTreasure (props) {
+function Monsters (props) {
   return (
     <Fragment>
       <div className='container-fluid'>
         <div className='row'>
-          <div className='container col justify-content-center border-right'>
+          <div className='container col justify-content-center'>
             <div className='container text-center mt-3 d-flex justify-content-center'>
               <select className="custom-select" 
                       style={{width: "300px"}} 
@@ -76,7 +76,7 @@ function MonstersAndTreasure (props) {
               <MonsterList monsterList={props.monsterList} updateMonsterList={props.updateMonsterList} />
             </div>
           </div>
-          <div className='container col-5 justify-content-center'>
+          {/* <div className='container col-5 justify-content-center'>
             <div className='container text-center mt-3 d-flex justify-content-center'>
               <select className="custom-select" 
                       style={{width: "300px"}} 
@@ -112,11 +112,11 @@ function MonstersAndTreasure (props) {
               <h1 className='text-center mt-3'>Treasure List</h1>
               <TreasureList treasureList={props.treasureList} updateTreasureList={props.updateTreasureList} />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Fragment>
   );
 }
 
-export default MonstersAndTreasure; 
+export default Monsters; 

@@ -28,7 +28,7 @@ function AboutProject() {
                     <p className='h5'>Each new encounter became this tiresome process of rolling on a table for the monsters... </p>
                     <p className='h5'>Then looking elsewhere in the book for all the special rules that monster had...</p>
                     <p className='h5'>Then rolling on another chart to see what treasures those monsters were carrying... </p>
-                    <img className="myimage mx-auto d-block" src="rage2.jpg" alt="Rage" style={ {width: '133px', height: '75px' }} />
+                    <img className="myimage mx-auto d-block" src="Rage2.jpg" alt="Rage" style={ {width: '133px', height: '75px' }} />
                 </div>
                 <img className="ml-3 myimage" src="monsterchart3.jpg" alt="Monster Chart" style={ {width: '300px', height: '227px' }} />
             </div>

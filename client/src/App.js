@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import './App.css';
-import MonstersAndTreasure from './components/MonstersAndTreasure';
+import Monsters from './components/Monsters';
+import Treasures from './components/Treasures';
 import EventsAndHazards from './components/EventsAndHazards';
 import HelloQuest from './components/HelloQuest';
 import AboutProject from './components/AboutProject';
@@ -20,9 +21,10 @@ const eventDropdownArray = [{ label: "Choose a Type of Event/Hazard...", value: 
 
 const tabsArray = [
   { label: "My Warhammer Quest Project", value: "TAB_HELLO", key: "1" },
-  { label: "Monsters and Treasure", value: "TAB_MONSTERS", key: "2" },
-  { label: "Events and Hazards", value: "TAB_EVENTS", key: "3" },
-  { label: "About the Project", value: "TAB_ABOUT", key: "4" }
+  { label: "Monsters", value: "TAB_MONSTERS", key: "2" },
+  { label: "Treasures", value: "TAB_TREASURES", key: "3" },
+  { label: "Events and Hazards", value: "TAB_EVENTS", key: "4" },
+  { label: "About the Project", value: "TAB_ABOUT", key: "5" }
 ];
 
 function TabCreator (props) {
@@ -44,15 +46,18 @@ function ContentPicker (props) {
   if (props.activeTab === "TAB_HELLO") {
     return (<HelloQuest />);
   } else if (props.activeTab === "TAB_MONSTERS") {
-    return (<MonstersAndTreasure
+    return (<Monsters
               monsterList={props.monsterList}
               updateMonsterList={props.updateMonsterList}
-              treasureList={props.treasureList}
-              updateTreasureList={props.updateTreasureList}
               monDropdownItems={props.monDropdownItems}
               updateMonDropdownItems={props.updateMonDropdownItems}
               monDropdownValue={props.monDropdownValue}
               updateMonDropdownValue={props.updateMonDropdownValue}
+            />);
+  } else if (props.activeTab === "TAB_TREASURES") {
+    return (<Treasures
+              treasureList={props.treasureList}
+              updateTreasureList={props.updateTreasureList}
               tresDropdownItems={props.tresDropdownItems}
               updateTresDropdownItems={props.updateTresDropdownItems}
               tresDropdownValue={props.tresDropdownValue}
